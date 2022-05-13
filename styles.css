@@ -1,0 +1,14 @@
+body {
+    height: 100vh;
+    background-color: rgb(118, 135, 152, 0.15);
+}
+
+#container {
+    height: 70%;
+    flex-wrap: wrap;
+    width: 960px;
+}
+
+.container {
+    height: 100%;
+}
