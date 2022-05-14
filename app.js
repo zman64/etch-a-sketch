@@ -14,7 +14,11 @@ for (let i = 0; i < (16*16); i++) {
 }
 
 const button = document.querySelector('#button')
+function ranValue() {
+    return Math.floor((Math.random() * 255) + 1);
+}
 
+console.log(ranValue())
 button.addEventListener('click', () => {
     let number = prompt('Number of Square per Side?')
     while (number > 100 || number < 0) {
@@ -24,10 +28,10 @@ button.addEventListener('click', () => {
     divs.forEach(function (div) {
         container.removeChild(div)
     })
+    var width = container.clientWidth / (number);
     for (let i = 0; i < (number*number); i++) {
         let div = document.createElement('div');
         div.style.backgroundColor = 'red'
-        let width = container.clientWidth / (number);
         div.style.width = `${width}px`
         div.classList.add('flex-grow-1', 'boxes')
         container.appendChild(div)
