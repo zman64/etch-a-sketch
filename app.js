@@ -24,10 +24,10 @@ button.addEventListener('click', () => {
     divs.forEach(function (div) {
         container.removeChild(div)
     })
+    let width = container.clientWidth / (number);
     for (let i = 0; i < (number*number); i++) {
         let div = document.createElement('div');
         div.style.backgroundColor = 'red'
-        let width = container.clientWidth / (number);
         div.style.width = `${width}px`
         div.classList.add('flex-grow-1', 'boxes')
         container.appendChild(div)
