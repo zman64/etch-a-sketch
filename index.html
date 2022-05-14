@@ -10,10 +10,13 @@
     <script src="app.js" defer></script>
 </head>
 <body>
-    <div class="container d-flex justify-content-center flex-column align-items-center">
-        <header>
-            <button id="button" class="btn-lg btn-success mb-2">Number of Squares?</button>
-        </header>
+    <div class="container d-md-flex justify-content-between flex-row align-items-center">
+        <section class="d-flex flex-column align-items-center">
+            <button id="square" class="btn-lg btn-success mb-2">Grid Size</button>
+            <button id="base" class="btn-lg btn-success mb-2">Base Color</button>
+            <button id="colors" class="btn-lg btn-success mb-2">Random Colors</button>
+            <button id="clear" class="btn-lg btn-success mb-2">Clear</button>
+        </section>
         <div class="d-flex" id="container"></div>
     </div>
 </body>
