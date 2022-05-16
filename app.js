@@ -1,6 +1,7 @@
 
 
 const container = document.querySelector('#container')
+const colors = document.getElementById('colors')
 
 for (let i = 0; i < (16*16); i++) {
     let div = document.createElement('div');
@@ -20,8 +21,8 @@ function ranValue() {
 }
 
 function doAction(e) {
-    
-    if (document.getElementById('colors').onclick == true){
+
+    if (colors.classList.contains('colors')){
         e.target.style.backgroundColor = `rgb(${ranValue()}, ${ranValue()}, ${ranValue()})`;
     } else {
         e.target.style.backgroundColor = `blue`;
@@ -54,15 +55,16 @@ base.addEventListener('click', (e) => {
 
 
 const random = document.querySelector('#colors')
-random.addEventListener('click', (e) => {
 
+random.addEventListener('click', (e) => {
+    if(e.target.classList.contains('colors')){
+        return
+    }
+    e.target.classList.add('colors')
     let divs = document.querySelectorAll('.boxes')
 
     divs.forEach(div => {
        div.style.backgroundColor = 'red'
-       div.addEventListener('mouseenter', (e) => {
-        e.target.style.backgroundColor = `rgb(${ranValue()}, ${ranValue()}, ${ranValue()})`;
-       })
     })
 })
 
@@ -86,9 +88,7 @@ button.addEventListener('click', () => {
         div.style.width = `${width}px`
         div.classList.add('flex-grow-1', 'boxes')
         container.appendChild(div)
-        div.addEventListener('mouseenter', (e) => {
-            div.style.backgroundColor = `blue`;
-        })
+        div.addEventListener('mouseenter', doAction)
     }
 
 })
