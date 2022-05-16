@@ -1,6 +1,6 @@
 body {
     height: 100vh;
-    background-color: rgb(118, 135, 152, 0.15);
+    background-color: rgb(18, 18, 18);
 }
 
 #container {
@@ -12,4 +12,37 @@ body {
 
 .container {
     height: 100%;
+    gap: 50px;
 }
+
+/* .border1 {
+    border: 0.5px solid black
+} */
+
+/* section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+} */
+
+section {
+    height: 100%;
+    gap: 15px;
+    /* width: 200px; */
+}
+
+#color-picker {
+    width: 75%;
+    gap: 20px;
+}
+
+.form-label {
+    margin-bottom: 0px;
+}
+
+/* #colors {
+    border: 1px solid blue;
+} */

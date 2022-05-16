@@ -3,6 +3,7 @@
 const container = document.querySelector('#container')
 const colors = document.getElementById('colors')
 const base = document.querySelector('#base');
+const colorPicker = document.querySelector('#ColorInput')
 
 for (let i = 0; i < (16*16); i++) {
     let div = document.createElement('div');
@@ -11,7 +12,7 @@ for (let i = 0; i < (16*16); i++) {
     let height = container.clientHeight / 8;
     div.style.width = `${width}px`
     // div.style.height = `${height}px`
-    div.classList.add('flex-grow-1', 'boxes')
+    div.classList.add('flex-grow-1', 'boxes', 'border1')
     container.appendChild(div)
     div.addEventListener('mouseenter', doAction)
     
@@ -28,7 +29,7 @@ function doAction(e) {
     } else if (base.classList.contains('base')){
         e.target.style.backgroundColor = `blue`;
     } else {
-        e.target.style.backgroundColor = `blue`;
+        e.target.style.backgroundColor = `${colorPicker.value}`;
     }
 }
 
@@ -49,7 +50,7 @@ base.addEventListener('click', (e) => {
     if(!e.target.classList.contains('base')){
         e.target.classList.toggle('base')
     }
-    e.target.nextElementSibling.classList.remove('colors')
+    colors.classList.remove('colors')
     let divs = document.querySelectorAll('.boxes')
     divs.forEach(div => {
         div.style.backgroundColor = 'red'
@@ -66,7 +67,7 @@ random.addEventListener('click', (e) => {
     if(!e.target.classList.contains('colors')){
          e.target.classList.toggle('colors');
     }
-    e.target.previousElementSibling.classList.remove('base')
+    base.classList.remove('base')
     let divs = document.querySelectorAll('.boxes')
     divs.forEach(div => {
        div.style.backgroundColor = 'red'
@@ -91,7 +92,7 @@ button.addEventListener('click', () => {
         let div = document.createElement('div');
         div.style.backgroundColor = 'red'
         div.style.width = `${width}px`
-        div.classList.add('flex-grow-1', 'boxes')
+        div.classList.add('flex-grow-1', 'boxes', 'border1')
         container.appendChild(div)
         div.addEventListener('mouseenter', doAction)
     }

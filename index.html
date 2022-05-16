@@ -10,14 +10,24 @@
     <script src="app.js" defer></script>
 </head>
 <body>
-    <div class="container d-md-flex justify-content-between flex-row align-items-center">
-        <section class="d-flex flex-column align-items-center">
-            <button id="square" class="btn-lg btn-success mb-2">Grid Size</button>
-            <button id="base" class="btn-lg btn-success mb-2">Base Color</button>
-            <button id="colors" class="btn-lg btn-success mb-2">Random Colors</button>
-            <button id="clear" class="btn-lg btn-success mb-2">Clear</button>
-        </section>
-        <div class="d-flex" id="container"></div>
+    <div class="container">
+        <div class="row d-md-flex justify-content-center flex-row align-items-center">
+            <div class="col-4">
+                <section class="d-flex flex-column align-items-center justify-content-center">
+                    <div class="d-flex justify-content-center" id="color-picker">
+                        <input type="color" class="form-control form-control-color" name="" id="ColorInput" value="color">
+                        <label for="ColorInput" class="form-label text-white align-self-center">Color picker</label>
+                    </div>
+                    <button id="square" class="btn-lg btn-success mb-2">Grid Size</button>
+                    <button id="base" class="btn btn-lg btn-success mb-2">Base Color</button>
+                    <button id="colors" class="btn-lg btn-success mb-2">Random Colors</button>
+                    <button id="clear" class="btn-lg btn-success mb-2">Clear</button>
+                </section>
+            </div>
+            <div class="col-8">
+                <div class="d-flex" id="container"></div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
