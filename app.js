@@ -2,6 +2,7 @@
 
 const container = document.querySelector('#container')
 const colors = document.getElementById('colors')
+const base = document.querySelector('#base');
 
 for (let i = 0; i < (16*16); i++) {
     let div = document.createElement('div');
@@ -24,6 +25,8 @@ function doAction(e) {
 
     if (colors.classList.contains('colors')){
         e.target.style.backgroundColor = `rgb(${ranValue()}, ${ranValue()}, ${ranValue()})`;
+    } else if (base.classList.contains('base')){
+        e.target.style.backgroundColor = `blue`;
     } else {
         e.target.style.backgroundColor = `blue`;
     }
@@ -39,30 +42,32 @@ clear.addEventListener('click', (e) => {
 })
 })
 
-const base = document.querySelector('#base');
+
+// base color
 
 base.addEventListener('click', (e) => {
+    if(!e.target.classList.contains('base')){
+        e.target.classList.toggle('base')
+    }
+    e.target.nextElementSibling.classList.remove('colors')
     let divs = document.querySelectorAll('.boxes')
-
     divs.forEach(div => {
-       div.addEventListener('mouseenter', (e) => {
-        e.target.style.backgroundColor = `blue`;
-       })
+        div.style.backgroundColor = 'red'
     })
 })
 
 
 
-
+// random color 
 const random = document.querySelector('#colors')
 
 random.addEventListener('click', (e) => {
-    if(e.target.classList.contains('colors')){
-        return
-    }
-    e.target.classList.add('colors')
-    let divs = document.querySelectorAll('.boxes')
 
+    if(!e.target.classList.contains('colors')){
+         e.target.classList.toggle('colors');
+    }
+    e.target.previousElementSibling.classList.remove('base')
+    let divs = document.querySelectorAll('.boxes')
     divs.forEach(div => {
        div.style.backgroundColor = 'red'
     })
