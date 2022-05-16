@@ -10,8 +10,11 @@
     <script src="app.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <div class="row d-md-flex justify-content-center flex-row align-items-center">
+    <div class="d-flex justify-content-center">
+        <div id="title" class="text-white display-5 fw-bold text-center">Etch-A-Sketch</div>
+    </div>
+    <div class="container-md">
+        <div class="row-md d-md-flex justify-content-center flex-row align-items-start mt-5">
             <div class="col-4">
                 <section class="d-flex flex-column align-items-center justify-content-center">
                     <div class="d-flex justify-content-center" id="color-picker">
@@ -28,7 +31,7 @@
                     <button id="clear" class="btn-lg btn-success mb-2">Clear</button>
                 </section>
             </div>
-            <div class="col-8">
+            <div class="col-6">
                 <div class="d-flex" id="container"></div>
             </div>
         </div>
