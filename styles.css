@@ -43,6 +43,11 @@ section {
     margin-bottom: 0px;
 }
 
+.form-control-color {
+    max-width: 6rem;
+    padding: 0.25rem;
+}
+
 /* #colors {
     border: 1px solid blue;
 } */

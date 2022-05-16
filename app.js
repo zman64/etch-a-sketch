@@ -3,7 +3,8 @@
 const container = document.querySelector('#container')
 const colors = document.getElementById('colors')
 const base = document.querySelector('#base');
-const colorPicker = document.querySelector('#ColorInput')
+const colorPicker = document.querySelector('#ColorInput');
+const random = document.querySelector('#colors')
 
 for (let i = 0; i < (16*16); i++) {
     let div = document.createElement('div');
@@ -51,6 +52,7 @@ base.addEventListener('click', (e) => {
         e.target.classList.toggle('base')
     }
     colors.classList.remove('colors')
+    colorPicker.classList.remove('color-picker')
     let divs = document.querySelectorAll('.boxes')
     divs.forEach(div => {
         div.style.backgroundColor = 'red'
@@ -60,7 +62,7 @@ base.addEventListener('click', (e) => {
 
 
 // random color 
-const random = document.querySelector('#colors')
+
 
 random.addEventListener('click', (e) => {
 
@@ -68,14 +70,26 @@ random.addEventListener('click', (e) => {
          e.target.classList.toggle('colors');
     }
     base.classList.remove('base')
+    colorPicker.classList.remove('color-picker')
     let divs = document.querySelectorAll('.boxes')
     divs.forEach(div => {
        div.style.backgroundColor = 'red'
     })
 })
 
+console.log(colorPicker)
 
-// Number of Squares
+// color picker
+colorPicker.addEventListener('click', (e) => {
+    if(!e.target.classList.contains('color-picker')){
+        e.target.classList.toggle('color-picker')
+    }
+    base.classList.remove('base')
+    colors.classList.remove('colors')
+})
+
+
+// Change grid size
 const button = document.querySelector('#square');
 
 button.addEventListener('click', () => {
