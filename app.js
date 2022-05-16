@@ -42,7 +42,7 @@ function doAction(e) {
 }
 
 
-
+// clear the grid
 clear.addEventListener('click', (e) => {
     let divs = document.querySelectorAll('.boxes')
 
@@ -79,10 +79,10 @@ random.addEventListener('click', (e) => {
     }
     base.classList.remove('base')
     colorPicker.classList.remove('color-picker')
-    let divs = document.querySelectorAll('.boxes')
-    divs.forEach(div => {
-        div.style.backgroundColor = 'red'
-    })
+    // let divs = document.querySelectorAll('.boxes')
+    // divs.forEach(div => {
+    //     div.style.backgroundColor = `${background.value}`
+    // })
 })
 
 console.log(colorPicker)
