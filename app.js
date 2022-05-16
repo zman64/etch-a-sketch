@@ -7,15 +7,12 @@ const colorPicker = document.querySelector('#ColorInput');
 const random = document.querySelector('#colors');
 const background = document.querySelector('#background-color');
 const clear = document.querySelector('#clear');
-
+const gridSize = document.querySelector('#gridSize')
+const button = document.querySelector('#square');
 
 for (let i = 0; i < (16 * 16); i++) {
     let div = document.createElement('div');
-    if (background.classList.contains('background')) {
-        div.style.backgroundColor = `${background.value}`
-    } else {
-        div.style.backgroundColor = 'white'
-    }
+    div.style.backgroundColor = `${background.value}`
     let width = container.clientWidth / 16;
     let height = container.clientHeight / 8;
     div.style.width = `${width}px`
@@ -25,6 +22,10 @@ for (let i = 0; i < (16 * 16); i++) {
     div.addEventListener('mouseenter', doAction)
 
 }
+
+button.value = 16;
+
+gridSize.textContent = button.value;
 
 function ranValue() {
     return Math.floor((Math.random() * 255) + 1);
@@ -42,16 +43,13 @@ function doAction(e) {
 }
 
 
+
 // clear the grid
 clear.addEventListener('click', (e) => {
     let divs = document.querySelectorAll('.boxes')
 
     divs.forEach(div => {
-        if (background.classList.contains('background')) {
             div.style.backgroundColor = `${background.value}`
-        } else {
-            div.style.backgroundColor = 'white'
-        }
     })
 })
 
@@ -97,7 +95,7 @@ colorPicker.addEventListener('click', (e) => {
 })
 
 // background color
-background.addEventListener('input', (e) => {
+background.addEventListener('change', (e) => {
     // console.log(e)
     if (!e.target.classList.contains('background')) {
         e.target.classList.toggle('background')
@@ -110,13 +108,17 @@ background.addEventListener('input', (e) => {
 })
 
 // Change grid size
-const button = document.querySelector('#square');
 
-button.addEventListener('click', () => {
-    let number = prompt('Number of Square per Side?')
-    while (number > 100 || number < 0 || isNaN(number) || number === null) {
-        number = prompt('Needs to be a number and between 1 & 100')
-    }
+button.addEventListener('change', () => {
+    // let number = prompt('Number of Square per Side?')
+    // while (number > 100 || number < 0 || isNaN(number) || number === null) {
+    //     number = prompt('Needs to be a number and between 1 & 100')
+    // }
+    let number = button.value;
+    console.log(number)
+
+    gridSize.textContent = number
+
     let divs = document.querySelectorAll('.boxes')
     divs.forEach(function (div) {
         container.removeChild(div)
@@ -124,7 +126,7 @@ button.addEventListener('click', () => {
     let width = container.clientWidth / (number);
     for (let i = 0; i < (number * number); i++) {
         let div = document.createElement('div');
-        div.style.backgroundColor = 'red'
+        div.style.backgroundColor = `${background.value}`
         div.style.width = `${width}px`
         div.classList.add('flex-grow-1', 'boxes', 'border1')
         container.appendChild(div)
