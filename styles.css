@@ -15,6 +15,10 @@ body {
     gap: 50px;
 }
 
+.row {
+    height: 100%;
+}
+
 /* .border1 {
     border: 0.5px solid black
 } */
@@ -39,6 +43,10 @@ section {
     gap: 20px;
 }
 
+#background {
+    width: 75%;
+    gap: 20px;
+}
 .form-label {
     margin-bottom: 0px;
 }
@@ -46,6 +54,7 @@ section {
 .form-control-color {
     max-width: 6rem;
     padding: 0.25rem;
+    
 }
 
 /* #colors {
