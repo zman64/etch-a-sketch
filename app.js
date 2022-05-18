@@ -9,6 +9,8 @@ const background = document.querySelector('#background-color');
 const clear = document.querySelector('#clear');
 const gridSize = document.querySelector('#gridSize')
 const button = document.querySelector('#square');
+const body = document.querySelector('body')
+let isDrawing = false;
 
 let width = container.clientWidth / 16;
 container.style.gridTemplateColumns = `repeat(16, 1fr)`
@@ -20,9 +22,32 @@ for (let i = 0; i < (16 * 16); i++) {
     div.style.width = `${width}px`
     // div.style.height = `${height}px`
     div.classList.add('boxes')
+    div.addEventListener('mouseenter', doAction, true)
+    div.addEventListener('mousedown', doAction, true)
     container.appendChild(div)
-    div.addEventListener('mouseenter', doAction)
+    
 }
+
+container.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    // console.log(e)
+    // e.stopPropagation();
+    isDrawing = true;
+}, true)
+
+// container.addEventListener('mouseup', (e) => {
+//     // console.log(e)
+//     // e.preventDefault();
+//     // e.stopPropagation();
+//     isDrawing = false;
+// }, true)
+
+body.addEventListener('mouseup', (e) => {
+    // console.log(e)
+    // e.preventDefault();
+    // e.stopPropagation();
+    isDrawing = false;
+}, true)
 
 button.value = 16;
 gridSize.textContent = button.value;
@@ -34,7 +59,9 @@ function ranValue() {
 }
 
 function doAction(e) {
-
+    // console.log(e)
+    e.preventDefault()
+    if (isDrawing){
     if (colors.classList.contains('colors')) {
         e.target.style.backgroundColor = `rgb(${ranValue()}, ${ranValue()}, ${ranValue()})`;
     } else if (base.classList.contains('base')) {
@@ -42,6 +69,7 @@ function doAction(e) {
     } else {
         e.target.style.backgroundColor = `${colorPicker.value}`;
     }
+}
 }
 
 
@@ -138,7 +166,9 @@ button.addEventListener('change', () => {
         div.style.width = `${width}px`
         div.addEventListener('mouseenter', doAction)
         div.classList.add('boxes')
+        div.addEventListener('mousedown', doAction, true)
         container.appendChild(div)
+        
         
     }
 
