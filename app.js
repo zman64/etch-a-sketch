@@ -1,6 +1,6 @@
 
 
-const container = document.querySelector('#container')
+const container = document.querySelector('.content--grid')
 const colors = document.getElementById('colors')
 const base = document.querySelector('#base');
 const colorPicker = document.querySelector('#ColorInput');
@@ -26,6 +26,8 @@ for (let i = 0; i < (16 * 16); i++) {
 button.value = 16;
 
 gridSize.textContent = button.value;
+
+console.log(button)
 
 function ranValue() {
     return Math.floor((Math.random() * 255) + 1);

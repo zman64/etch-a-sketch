@@ -87,6 +87,24 @@ input[type="color"]::-webkit-color-swatch {
     text-align: center;
 }
 
+.input--grid {
+    display: grid;
+    flex-direction: column;
+    /* justify-content: center; */
+}
+
+.grid__name {
+    justify-self: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.grid__size {
+    /* color: #fff; */
+    /* height: 2rem; */
+    justify-self: center;
+    font-size: 1.6rem;
+}
 
 .content--grid {
     height: 70%;
@@ -95,5 +113,6 @@ input[type="color"]::-webkit-color-swatch {
     box-shadow: hsla(0, 0%, 100%) 1px 2px 8px;
     color: #fff;
 }
+
 
 
