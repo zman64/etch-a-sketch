@@ -9,7 +9,9 @@ const background = document.querySelector('#background-color');
 const clear = document.querySelector('#clear');
 const gridSize = document.querySelector('#gridSize')
 const button = document.querySelector('#square');
-const body = document.querySelector('body')
+const body = document.querySelector('body');
+const darken = document.querySelector('#darken');
+
 let isDrawing = false;
 let div = 0;
 let divs = 0;
@@ -46,12 +48,13 @@ container.addEventListener('mousedown', (e) => {
 
 body.addEventListener('mouseup', (e) => {
     // console.log(e)
-    e.preventDefault();
+    // console.log(e)
+    // e.preventDefault();
     // e.stopPropagation();
     isDrawing = false;
-}, true)
+}, false)
 
-// button.value = 16;
+button.value = 16;
 gridSize.textContent = button.value;
 
 // console.log(button)
@@ -74,11 +77,14 @@ function doAction(e) {
 }
 }
 
+// darken the color
+
+
 
 
 // clear the grid
 clear.addEventListener('click', (e) => {
-    divs = document.querySelectorAll('.boxes')
+   let divs = document.querySelectorAll('.boxes')
 
     divs.forEach(div => {
             div.style.backgroundColor = `${background.value}`
@@ -141,12 +147,13 @@ background.addEventListener('change', (e) => {
 
 // Change grid size
 
-button.addEventListener('change', () => {
+button.addEventListener('change', (e) => {
+    // console.log(e.target.value)
     // let number = prompt('Number of Square per Side?')
     // while (number > 100 || number < 0 || isNaN(number) || number === null) {
     //     number = prompt('Needs to be a number and between 1 & 100')
     // }
-    number = button.value
+    number = e.target.value
     // let width = container.clientWidth / (number);
     // console.log(number)
 

@@ -35,13 +35,12 @@ body:focus {
 }
 
 .container {
-    height: 100%;
+    max-height: 600px;
     max-width: 1440px;
     margin: 1rem auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-items: center;
-
 }
 
 
@@ -65,9 +64,17 @@ input[type="color"]::-webkit-color-swatch {
 
 .content--menu {
     font-size: 1.3rem;
-
+    align-self: center;
 }
 
+#buttons {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 400px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
 .input {
     margin-bottom: 0.9rem;
     padding: 0.5rem;
