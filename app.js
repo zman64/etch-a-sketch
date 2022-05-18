@@ -11,12 +11,14 @@ const gridSize = document.querySelector('#gridSize')
 const button = document.querySelector('#square');
 const body = document.querySelector('body')
 let isDrawing = false;
-
+let div = 0;
+let divs = 0;
+let number = 0;
 let width = container.clientWidth / 16;
 container.style.gridTemplateColumns = `repeat(16, 1fr)`
 
 for (let i = 0; i < (16 * 16); i++) {
-    let div = document.createElement('div');
+    div = document.createElement('div');
     div.style.backgroundColor = `${background.value}`
     // let height = container.clientHeight / 8;
     div.style.width = `${width}px`
@@ -49,7 +51,7 @@ body.addEventListener('mouseup', (e) => {
     isDrawing = false;
 }, true)
 
-button.value = 16;
+// button.value = 16;
 gridSize.textContent = button.value;
 
 // console.log(button)
@@ -76,7 +78,7 @@ function doAction(e) {
 
 // clear the grid
 clear.addEventListener('click', (e) => {
-    let divs = document.querySelectorAll('.boxes')
+    divs = document.querySelectorAll('.boxes')
 
     divs.forEach(div => {
             div.style.backgroundColor = `${background.value}`
@@ -113,7 +115,7 @@ random.addEventListener('click', (e) => {
     // })
 })
 
-console.log(colorPicker)
+// console.log(colorPicker)
 
 // color picker
 colorPicker.addEventListener('click', (e) => {
@@ -131,7 +133,7 @@ background.addEventListener('change', (e) => {
         e.target.classList.toggle('background')
     }
     // console.log(background)
-    let divs = document.querySelectorAll('.boxes')
+    divs = document.querySelectorAll('.boxes')
     divs.forEach(div => {
         div.style.backgroundColor = `${background.value}`
     })
@@ -144,32 +146,29 @@ button.addEventListener('change', () => {
     // while (number > 100 || number < 0 || isNaN(number) || number === null) {
     //     number = prompt('Needs to be a number and between 1 & 100')
     // }
-    let number = button.value;
-    let width = container.clientWidth / (number);
+    number = button.value
+    // let width = container.clientWidth / (number);
     // console.log(number)
 
     gridSize.textContent = number
-    
 
-    let divs = document.querySelectorAll('.boxes')
+    divs = document.querySelectorAll('.boxes')
     divs.forEach(function (div) {
         container.removeChild(div)
     })
-    container.style.gridTemplateColumns = null;
+
     container.style.gridTemplateColumns = `repeat(${number}, 1fr)`
     
     // console.log(width)
     // console.log(number)
     for (let i = 0; i < (number * number); i++) {
-        let div = document.createElement('div');
+        div = document.createElement('div');
         div.style.backgroundColor = `${background.value}`
-        div.style.width = `${width}px`
+        // div.style.width = `${width}px`
         div.addEventListener('mouseenter', doAction)
-        div.classList.add('boxes')
         div.addEventListener('mousedown', doAction, true)
+        div.classList.add('boxes')
         container.appendChild(div)
-        
-        
     }
 
 })

@@ -3,7 +3,6 @@
     margin: 0;
     padding: 0;
     caret-color: transparent;
-
 }
 
 
@@ -11,23 +10,23 @@
 
 body {
     height: 100vh;
-    background-color: #171717;
+    background-color: #B8B8B8;
     font-family: 'Roboto', sans-serif;
     line-height: 1.7;
     font-size: 13px;
-    color: white;
+    color: #0d0d0d;
 
-    
+
 }
 
 body:focus {
     outline: none;
 }
+
 .title {
-    text-shadow: 0px 4px 3px rgba(255, 255, 255, 0.4),
-        0px 8px 13px rgba(255, 255, 255, 0.102),
-        0px 18px 23px rgba(255, 255, 255, 0.1);
-    color: #fff;
+    color: #FFFFFF;
+    background: #b8b8b8;
+    text-shadow: 4px 3px 0 #7A7A7A;
     font-size: 3rem;
     text-align: center;
     font-weight: bold;
@@ -42,7 +41,7 @@ body:focus {
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-items: center;
-    
+
 }
 
 
@@ -127,8 +126,9 @@ input[type="color"]::-webkit-color-swatch {
     height: 70%;
     width: 600px;
     height: 600px;
-    box-shadow: hsla(0, 0%, 100%) 1px 2px 8px;
-    color: #fff;
+    box-shadow: #7A7A7A 1px 2px 8px;
+    display: grid;
+    caret-color: transparent;
 }
 
 .button {
@@ -148,18 +148,12 @@ input[type="color"]::-webkit-color-swatch {
 
 }
 
-.button:hover {background-color: rgb(47, 87, 120)}
-
-.button:active {
-  background-color: rgb(47, 87, 120);
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
+.button:hover {
+    background-color: rgb(47, 87, 120)
 }
 
-/* Grid sketch area */
-.content--grid {
-    display: grid;
-    cursor: pointer;
-    caret-color: transparent;
-    /* grid-template-columns: repeat(16, 1fr); */
+.button:active {
+    background-color: rgb(47, 87, 120);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
 }
