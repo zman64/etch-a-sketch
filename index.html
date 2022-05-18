@@ -20,22 +20,21 @@
     <div class="container">
         <section class="content content--menu">
             <div class="input input--color" id="color-picker">
-                <input type="color" class="form-control form-control-color" name="" id="ColorInput" value="#FFFFFF">
-                <label for="ColorInput" class="form-label text-white align-self-center h5">Color picker</label>
+                <input type="color" class="input__button" name="" id="ColorInput" value="#FFFFFF"><label
+                    for="ColorInput" class="input__label">Color picker</label>
             </div>
             <div class="input input--background" id="background">
-                <input id="background-color" type="color" class="form-control form-control-color" name="background"
-                    value="#000000">
-                <label for="background-color" class="form-label text-white align-self-center h5">Background</label>
+                <input id="background-color" type="color" class="input__button" name="background" value="#000000">
+                <label for="background-color" class="input__label">Background</label>
             </div>
             <div class="input input--grid">
                 <label for="square" class="form-label text-white text-center h2">Grid Size</label>
                 <input id="square" class="btn-lg btn-success mb-2" type="range" name="square" min="1" max="65" step="5">
-                <div id="gridSize" class="text-white text-center h2"></div>
+                <div id="gridSize" class=""></div>
             </div>
-            <button id="base" class="input input--base">Base Color</button>
+            <button id="base" class="input input__button">Base Color</button>
             <button id="colors" class="input input--colors">Random Colors</button>
-            <button id="clear" class="input input-clear">Clear</button>
+            <button id="clear" class="input input-button">Clear</button>
         </section>
         <div class="content content--grid">
             <div class="content__grid"></div>
