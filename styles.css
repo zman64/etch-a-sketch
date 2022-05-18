@@ -49,7 +49,7 @@ input[type="color"]::-webkit-color-swatch {
 
 .content--menu {
     font-size: 1.3rem;
-    
+
 }
 
 .input {
@@ -114,5 +114,27 @@ input[type="color"]::-webkit-color-swatch {
     color: #fff;
 }
 
+.button {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: steelblue;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    /* background-color: #4D75E7; */
 
+}
 
+.button:hover {background-color: rgb(47, 87, 120)}
+
+.button:active {
+  background-color: rgb(47, 87, 120);
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
