@@ -44,7 +44,7 @@ container.addEventListener('mousedown', (e) => {
 
 body.addEventListener('mouseup', (e) => {
     // console.log(e)
-    // e.preventDefault();
+    e.preventDefault();
     // e.stopPropagation();
     isDrawing = false;
 }, true)
