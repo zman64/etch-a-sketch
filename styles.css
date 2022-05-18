@@ -1,49 +1,46 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     height: 100vh;
     background-color: #171717;
     font-family: 'Roboto', sans-serif;
+    line-height: 1.7;
+    font-size: 13px;
+    color: white;
 }
 
-#title {
-text-shadow: 0px 4px 3px rgba(255,255,255,0.4),
-             0px 8px 13px rgba(255, 255, 255, 0.102),
-             0px 18px 23px rgba(255,255,255,0.1);
+.title {
+    text-shadow: 0px 4px 3px rgba(255, 255, 255, 0.4),
+        0px 8px 13px rgba(255, 255, 255, 0.102),
+        0px 18px 23px rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 3rem;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+
 }
 
-#container {
+.container {
+    height: 100%;
+}
+
+section {
+    height: 100%;
+    gap: 15px;
+}
+
+.content--grid {
     height: 70%;
     flex-wrap: wrap;
     width: 600px;
     height: 600px;
     box-shadow: hsla(0, 0%, 100%) 1px 2px 8px;
-}
-
-.container {
-    height: 100%;
-    gap: 50px;
-}
-
-.row {
-    height: 100%;
-}
-
-/* .border1 {
-    border: 0.5px solid black
-} */
-
-/* section {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-
-} */
-
-section {
-    height: 100%;
-    gap: 15px;
-    /* width: 200px; */
+    color: #fff;
 }
 
 #color-picker {
@@ -55,16 +52,4 @@ section {
     width: 75%;
     gap: 20px;
 }
-.form-label {
-    margin-bottom: 0px;
-}
 
-.form-control-color {
-    max-width: 6rem;
-    padding: 0.25rem;
-    
-}
-
-/* #colors {
-    border: 1px solid blue;
-} */
