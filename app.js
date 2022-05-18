@@ -10,24 +10,24 @@ const clear = document.querySelector('#clear');
 const gridSize = document.querySelector('#gridSize')
 const button = document.querySelector('#square');
 
+let width = container.clientWidth / 16;
+container.style.gridTemplateColumns = `repeat(16, 1fr)`
+
 for (let i = 0; i < (16 * 16); i++) {
     let div = document.createElement('div');
     div.style.backgroundColor = `${background.value}`
-    let width = container.clientWidth / 16;
-    let height = container.clientHeight / 8;
+    // let height = container.clientHeight / 8;
     div.style.width = `${width}px`
     // div.style.height = `${height}px`
-    div.classList.add('flex-grow-1', 'boxes', 'border1')
+    div.classList.add('boxes')
     container.appendChild(div)
     div.addEventListener('mouseenter', doAction)
-
 }
 
 button.value = 16;
-
 gridSize.textContent = button.value;
 
-console.log(button)
+// console.log(button)
 
 function ranValue() {
     return Math.floor((Math.random() * 255) + 1);
@@ -117,22 +117,29 @@ button.addEventListener('change', () => {
     //     number = prompt('Needs to be a number and between 1 & 100')
     // }
     let number = button.value;
-    console.log(number)
+    let width = container.clientWidth / (number);
+    // console.log(number)
 
     gridSize.textContent = number
+    
 
     let divs = document.querySelectorAll('.boxes')
     divs.forEach(function (div) {
         container.removeChild(div)
     })
-    let width = container.clientWidth / (number);
+    container.style.gridTemplateColumns = null;
+    container.style.gridTemplateColumns = `repeat(${number}, 1fr)`
+    
+    // console.log(width)
+    // console.log(number)
     for (let i = 0; i < (number * number); i++) {
         let div = document.createElement('div');
         div.style.backgroundColor = `${background.value}`
         div.style.width = `${width}px`
-        div.classList.add('flex-grow-1', 'boxes', 'border1')
-        container.appendChild(div)
         div.addEventListener('mouseenter', doAction)
+        div.classList.add('boxes')
+        container.appendChild(div)
+        
     }
 
 })

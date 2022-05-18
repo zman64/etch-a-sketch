@@ -138,3 +138,9 @@ input[type="color"]::-webkit-color-swatch {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
+
+/* Grid sketch area */
+.content--grid {
+    display: grid;
+    /* grid-template-columns: repeat(16, 1fr); */
+}
