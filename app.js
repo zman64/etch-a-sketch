@@ -11,6 +11,7 @@ const gridSize = document.querySelector('#gridSize')
 const button = document.querySelector('#square');
 const body = document.querySelector('body');
 const darken = document.querySelector('#darken');
+const lighten = document.querySelector('#lighten')
 
 let isDrawing = false;
 let div = 0;
@@ -71,20 +72,97 @@ function doAction(e) {
         e.target.style.backgroundColor = `rgb(${ranValue()}, ${ranValue()}, ${ranValue()})`;
     } else if (base.classList.contains('base')) {
         e.target.style.backgroundColor = `blue`;
-    } else {
+    } else if (darken.classList.contains('darken')){
+        var Color = e.target.style.backgroundColor.split(',')
+        let r = parseInt(Color[0].slice(4).trim());
+        let b = parseInt(Color[2].slice(0, -1).trim());
+        let g = parseInt(Color[1].trim());
+        // console.log(r,g,b)
+        var HexColor = rgbToHex(r, g, b)
+        var NewColor = newShade(HexColor, -25)
+        e.target.style.backgroundColor = NewColor;
+    } 
+    
+        else {
         e.target.style.backgroundColor = `${colorPicker.value}`;
     }
 }
 }
 
-// darken the color
+function componentToHex(c) {
+  var hex = c.toString(16);
+  return hex.length == 1 ? "0" + hex : hex;
+}
 
+function rgbToHex(r, g, b) {
+  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
+
+const newShade = (hexColor, magnitude) => {
+    hexColor = hexColor.replace(`#`, ``);
+    if (hexColor.length === 6) {
+        const decimalColor = parseInt(hexColor, 16);
+        let r = (decimalColor >> 16) + magnitude;
+        r > 255 && (r = 255);
+        r < 0 && (r = 0);
+        let g = (decimalColor & 0x0000ff) + magnitude;
+        g > 255 && (g = 255);
+        g < 0 && (g = 0);
+        let b = ((decimalColor >> 8) & 0x00ff) + magnitude;
+        b > 255 && (b = 255);
+        b < 0 && (b = 0);
+        return `#${(g | (b << 8) | (r << 16)).toString(16)}`;
+    } else {
+        return hexColor;
+    }
+};
+
+// function LightenDarkenColor(col, amt) {
+  
+//     var usePound = false;
+  
+//     if (col[0] == "#") {
+//         col = col.slice(1);
+//         usePound = true;
+//     }
+ 
+//     var num = parseInt(col,16);
+ 
+//     var r = (num >> 16) + amt;
+ 
+//     if (r > 255) r = 255;
+//     else if  (r < 0) r = 0;
+ 
+//     var b = ((num >> 8) & 0x00FF) + amt;
+ 
+//     if (b > 255) b = 255;
+//     else if  (b < 0) b = 0;
+ 
+//     var g = (num & 0x0000FF) + amt;
+ 
+//     if (g > 255) g = 255;
+//     else if (g < 0) g = 0;
+ 
+//     return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
+  
+// }
+
+// darken the color
+darken.addEventListener('click', (e) => {
+    if (!e.target.classList.contains('darken')) {
+        e.target.classList.toggle('darken')
+    }
+    colors.classList.remove('colors');
+    colorPicker.classList.remove('color-picker');
+    base.classList.remove('base');
+})
 
 
 
 // clear the grid
 clear.addEventListener('click', (e) => {
-   let divs = document.querySelectorAll('.boxes')
+   divs = document.querySelectorAll('.boxes')
+   console.log(background.value)
 
     divs.forEach(div => {
             div.style.backgroundColor = `${background.value}`
@@ -97,6 +175,7 @@ base.addEventListener('click', (e) => {
     if (!e.target.classList.contains('base')) {
         e.target.classList.toggle('base')
     }
+    darken.classList.remove('darken')
     colors.classList.remove('colors')
     colorPicker.classList.remove('color-picker')
     let divs = document.querySelectorAll('.boxes')
@@ -115,6 +194,7 @@ random.addEventListener('click', (e) => {
     }
     base.classList.remove('base')
     colorPicker.classList.remove('color-picker')
+    darken.classList.remove('darken')
     // let divs = document.querySelectorAll('.boxes')
     // divs.forEach(div => {
     //     div.style.backgroundColor = `${background.value}`
@@ -130,6 +210,7 @@ colorPicker.addEventListener('click', (e) => {
     }
     base.classList.remove('base')
     colors.classList.remove('colors')
+    darken.classList.remove('darken')
 })
 
 // background color
