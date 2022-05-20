@@ -14,4 +14,4 @@ Feature ideas to implement
 
 [Live App](https://zman64.github.io/etch-a-sketch/)
  
-![alt text]( "App Preview")
+![Example_Guy_Etch](https://raw.githubusercontent.com/zman64/etch-a-sketch/main/Example_Guy_Etch.png "A Dude")
