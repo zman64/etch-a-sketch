@@ -16,9 +16,11 @@ let isDrawing = false;
 let div = 0;
 let divs = 0;
 let number = 0;
-let width = container.clientWidth / 16;
+let height;
+let width;
 container.style.gridTemplateColumns = `repeat(16, 1fr)`
-
+width = container.clientWidth / 16
+height = container.clientHeight / 16
 for (let i = 0; i < (16 * 16); i++) {
     div = document.createElement('div');
     div.style.backgroundColor = `${background.value}`
@@ -26,6 +28,8 @@ for (let i = 0; i < (16 * 16); i++) {
     div.classList.add('boxes')
     div.addEventListener('mouseenter', doAction, true)
     div.addEventListener('mousedown', doAction, true)
+    div.style.width = width
+    div.style.height = height
     container.appendChild(div)
 
 }
@@ -246,13 +250,16 @@ button.addEventListener('change', (e) => {
         container.removeChild(div)
     })
     container.style.gridTemplateColumns = `repeat(${number}, 1fr)`
-
+    width = container.clientWidth / number
+    height = container.clientHeight / number
     for (let i = 0; i < (number * number); i++) {
         div = document.createElement('div');
         div.style.backgroundColor = `${background.value}`
         div.addEventListener('mouseenter', doAction)
         div.addEventListener('mousedown', doAction, true)
         div.classList.add('boxes')
+        div.style.width = width
+        div.style.height = height
         container.appendChild(div)
     }
 
