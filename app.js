@@ -11,6 +11,7 @@ const button = document.querySelector('#square');
 const body = document.querySelector('body');
 const darken = document.querySelector('#darken');
 const lighten = document.querySelector('#lighten')
+const eraser = document.querySelector('#eraser')
 
 let isDrawing = false;
 let div = 0;
@@ -113,6 +114,9 @@ function doAction(e) {
         else if (base.classList.contains('base')){
             e.target.style.backgroundColor = colorPicker.value
         }
+        else if (eraser.classList.contains('eraser')){
+            e.target.style.backgroundColor = background.value
+        }
         else {
             e.target.style.backgroundColor = `${colorPicker.value}`;
         }
@@ -146,6 +150,15 @@ function LightenColor(color, percent) {
     return "#" + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 + (B < 255 ? B < 1 ? 0 : B : 255) * 0x100 + (G < 255 ? G < 1 ? 0 : G : 255)).toString(16).slice(1);
 };
 
+// eraser button
+eraser.addEventListener('click', (e) => {
+    e.target.classList.toggle('eraser')
+    colors.classList.remove('colors');
+    colorPicker.classList.remove('color-picker');
+    base.classList.remove('base');
+    lighten.classList.remove('lighten')
+})
+
 // darken the color
 darken.addEventListener('click', (e) => {
     e.target.classList.toggle('darken')
@@ -153,6 +166,7 @@ darken.addEventListener('click', (e) => {
     colorPicker.classList.remove('color-picker');
     base.classList.remove('base');
     lighten.classList.remove('lighten')
+    eraser.classList.remove('eraser')
 })
 
 // lighten the color
@@ -161,7 +175,8 @@ lighten.addEventListener('click', (e) => {
     colors.classList.remove('colors');
     colorPicker.classList.remove('color-picker');
     base.classList.remove('base');
-    darken.classList.remove('darken')
+    darken.classList.remove('darken') 
+    eraser.classList.remove('eraser')
 })
 
 
@@ -173,6 +188,7 @@ clear.addEventListener('click', (e) => {
     base.classList.remove('base');
     darken.classList.remove('darken')
     lighten.classList.remove('lighten')
+    eraser.classList.remove('eraser')
     divs.forEach(div => {
         div.style.backgroundColor = `${background.value}`
     })
@@ -187,6 +203,7 @@ base.addEventListener('click', (e) => {
     colors.classList.remove('colors')
     colorPicker.classList.remove('color-picker')
     lighten.classList.remove('lighten')
+    eraser.classList.remove('eraser')
 })
 
 
@@ -198,6 +215,7 @@ random.addEventListener('click', (e) => {
     colorPicker.classList.remove('color-picker')
     darken.classList.remove('darken')
     lighten.classList.remove('lighten')
+    eraser.classList.remove('eraser')
 
 })
 
@@ -211,6 +229,7 @@ colorPicker.addEventListener('click', (e) => {
     colors.classList.remove('colors')
     darken.classList.remove('darken')
     lighten.classList.remove('lighten')
+    eraser.classList.remove('eraser')
 })
 
 // background color

@@ -177,7 +177,7 @@ input[type="color"]::-webkit-color-swatch {
     transform: translateY(4px);
 } */
 
-.colors, .darken, .lighten, .base {
+.colors, .darken, .lighten, .base, .eraser {
     background-color: rgb(47, 87, 120);
     box-shadow: 0 5px #666;
     transform: translateY(4px);
