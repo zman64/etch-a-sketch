@@ -7,7 +7,7 @@ Create your own pixel art.
 - [Overview](#overview)
   - [The Challenge](#the-challenge)
   - [Screenshot] (#screenshot)
-  - [Links](#links(
+  - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
