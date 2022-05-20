@@ -181,7 +181,5 @@ input[type="color"]::-webkit-color-swatch {
     background-color: rgb(47, 87, 120);
     box-shadow: 0 5px #666;
     transform: translateY(4px);
-    background-color: rgb(159, 211, 199);
-    /* background-color: rgba(85, 102, 0, 0) */
 }
 
