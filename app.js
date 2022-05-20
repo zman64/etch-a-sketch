@@ -1,5 +1,4 @@
 
-
 const container = document.querySelector('.content--grid')
 const colors = document.getElementById('colors')
 // const base = document.querySelector('#base');
@@ -48,10 +47,6 @@ container.addEventListener('mousedown', (e) => {
 // }, true)
 
 body.addEventListener('mouseup', (e) => {
-    // console.log(e)
-    // console.log(e)
-    // e.preventDefault();
-    // e.stopPropagation();
     isDrawing = false;
 }, false)
 
@@ -63,6 +58,9 @@ gridSize.textContent = button.value;
 function ranValue() {
     return Math.floor((Math.random() * 255) + 1);
 }
+let r;
+let g;
+let b;
 
 function doAction(e) {
     // console.log(e)
@@ -74,51 +72,73 @@ function doAction(e) {
             // } else if (base.classList.contains('base')) {
             //     e.target.style.backgroundColor = `rgb(159, 211, 199)`;
         } else if (darken.classList.contains('darken')) {
-            if (e.target.style.backgroundColor.includes("#")) {
-                var NColor = LightenDarkenColor(e.target.style.backgroundColor, -20)
-                e.target.style.backgroundColor = NColor;
-                console.log(NColor)
-            } else {
-                var Color = e.target.style.backgroundColor.split(',')
-                // console.log(Color)
-                let r = parseInt(Color[0].slice(4).trim());
-                // if (Color[2].slice(-1) === ')') {
-                let b = parseInt(Color[2].slice(0, -1).trim());
-                // } else {
 
-                // }
-                let g = parseInt(Color[1].trim());
-                console.log(r, g, b)
-                // console.log(r,g,b)
-                var HexColor = rgbToHex(r, g, b)
-                // console.log(HexColor)
-                console.log(typeof e.target.style.backgroundColor.toString())
-                var NewColor = LightenDarkenColor(HexColor, -20)
-                console.log(NewColor)
-                e.target.style.backgroundColor = NewColor;
-                console.log(e.target.style.backgroundColor)
-
-
-                // console.log(NewColor)
-                // var rColor = hexToRgb(NewColor).r;
-                // var gColor = hexToRgb(NewColor).g;
-                // var bColor = hexToRgb(NewColor).b;
-
-                // e.target.style.backgroundColor = `rgb(${rColor}, ${gColor}, ${bColor})`;
-            }
-        } else if (lighten.classList.contains('lighten')) {
-            // console.log(e.target.style.backgroundColor)
             var Color = e.target.style.backgroundColor.split(',')
-            let r = parseInt(Color[0].slice(4).trim());
-            let b = parseInt(Color[2].slice(0, -1).trim());
-            let g = parseInt(Color[1].trim());
+            // console.log(Color)
+            if (Color[0].includes('a')) {
+                r = parseInt(Color[0].slice(5).trim());
+            } else {
+                r = parseInt(Color[0].slice(4).trim());
+            }
+            g = parseInt(Color[1].trim());
+            if (Color[2].includes(')')) {
+                b = parseInt(Color[2].slice(0, -1).trim());
+            } else {
+                b = parseInt(Color[2].trim());
+            }
+
+            // console.log(r, g, b)
             // console.log(r,g,b)
             var HexColor = rgbToHex(r, g, b)
-            NewColor = newShade(HexColor, 25);
-            var rColor = hexToRgb(NewColor).r;
-            var gColor = hexToRgb(NewColor).g;
-            var bColor = hexToRgb(NewColor).b
-            e.target.style.backgroundColor = `rgb(${rColor}, ${gColor}, ${bColor})`;
+            // console.log(HexColor);
+
+            // console.log(typeof e.target.style.backgroundColor.toString())
+            var hexcolor = LightenColor(HexColor, -10)
+            console.log(hexcolor);
+            if (hexcolor.length === 5) {
+                // console.log(hexcolor.slice(1, -1));
+                hexcolor = hexcolor.slice(1, -1).split('').map(function (hex) {
+                    return hex + hex;
+                }).join('');
+                hexcolor = "#" + hexcolor
+            }
+            
+            e.target.style.backgroundColor = hexcolor;
+            // console.log(e.target.style.backgroundColor)
+        }
+        else if (lighten.classList.contains('lighten')) {
+             var Color = e.target.style.backgroundColor.split(',')
+            // console.log(Color)
+            if (Color[0].includes('a')) {
+                r = parseInt(Color[0].slice(5).trim());
+            } else {
+                r = parseInt(Color[0].slice(4).trim());
+            }
+            g = parseInt(Color[1].trim());
+            if (Color[2].includes(')')) {
+                b = parseInt(Color[2].slice(0, -1).trim());
+            } else {
+                b = parseInt(Color[2].trim());
+            }
+
+            // console.log(r, g, b)
+            // console.log(r,g,b)
+            var HexColor = rgbToHex(r, g, b)
+            // console.log(HexColor);
+
+            // console.log(typeof e.target.style.backgroundColor.toString())
+            var hexcolor = LightenColor(HexColor, 10)
+            console.log(hexcolor);
+            if (hexcolor.length === 5) {
+                // console.log(hexcolor.slice(1, -1));
+                hexcolor = hexcolor.slice(1, -1).split('').map(function (hex) {
+                    return hex + hex;
+                }).join('');
+                hexcolor = "#" + hexcolor
+            }
+            
+            e.target.style.backgroundColor = hexcolor;
+            // console.log(e.target.style.backgroundColor)
         } else {
             e.target.style.backgroundColor = `${colorPicker.value}`;
         }
@@ -143,54 +163,14 @@ function hexToRgb(hex) {
     } : null;
 }
 
-const newShade = (hexColor, magnitude) => {
-    hexColor = hexColor.replace(`#`, ``);
-    if (hexColor.length === 6) {
-        const decimalColor = parseInt(hexColor, 16);
-        let r = (decimalColor >> 16) + magnitude;
-        r > 255 && (r = 255);
-        r < 0 && (r = 0);
-        let g = (decimalColor & 0x0000ff) + magnitude;
-        g > 255 && (g = 255);
-        g < 0 && (g = 0);
-        let b = ((decimalColor >> 8) & 0x00ff) + magnitude;
-        b > 255 && (b = 255);
-        b < 0 && (b = 0);
-        return `#${(g | (b << 8) | (r << 16)).toString(16)}`;
-    } else {
-        return hexColor;
-    }
+function LightenColor(color, percent) {
+var num = parseInt(color.replace("#",""),16),
+amt = Math.round(2.55 * percent),
+R = (num >> 16) + amt,
+B = (num >> 8 & 0x00FF) + amt,
+G = (num & 0x0000FF) + amt;
+return "#" + (0x1000000 + (R<255?R<1?0:R:255)*0x10000 + (B<255?B<1?0:B:255)*0x100 + (G<255?G<1?0:G:255)).toString(16).slice(1);
 };
-
-function LightenDarkenColor(col, amt) {
-
-    var usePound = false;
-
-    if (col[0] == "#") {
-        col = col.slice(1);
-        usePound = true;
-    }
-
-    var num = parseInt(col, 16);
-
-    var r = (num >> 16) + amt;
-
-    if (r > 255) r = 255;
-    else if (r < 0) r = 0;
-
-    var b = ((num >> 8) & 0x00FF) + amt;
-
-    if (b > 255) b = 255;
-    else if (b < 0) b = 0;
-
-    var g = (num & 0x0000FF) + amt;
-
-    if (g > 255) g = 255;
-    else if (g < 0) g = 0;
-
-    return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16);
-
-}
 
 // darken the color
 darken.addEventListener('click', (e) => {
