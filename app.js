@@ -102,12 +102,12 @@ function doAction(e) {
                 }).join('');
                 hexcolor = "#" + hexcolor
             }
-            
+
             e.target.style.backgroundColor = hexcolor;
             // console.log(e.target.style.backgroundColor)
         }
         else if (lighten.classList.contains('lighten')) {
-             var Color = e.target.style.backgroundColor.split(',')
+            var Color = e.target.style.backgroundColor.split(',')
             // console.log(Color)
             if (Color[0].includes('a')) {
                 r = parseInt(Color[0].slice(5).trim());
@@ -136,7 +136,7 @@ function doAction(e) {
                 }).join('');
                 hexcolor = "#" + hexcolor
             }
-            
+
             e.target.style.backgroundColor = hexcolor;
             // console.log(e.target.style.backgroundColor)
         } else {
@@ -164,12 +164,12 @@ function hexToRgb(hex) {
 }
 
 function LightenColor(color, percent) {
-var num = parseInt(color.replace("#",""),16),
-amt = Math.round(2.55 * percent),
-R = (num >> 16) + amt,
-B = (num >> 8 & 0x00FF) + amt,
-G = (num & 0x0000FF) + amt;
-return "#" + (0x1000000 + (R<255?R<1?0:R:255)*0x10000 + (B<255?B<1?0:B:255)*0x100 + (G<255?G<1?0:G:255)).toString(16).slice(1);
+    var num = parseInt(color.replace("#", ""), 16),
+        amt = Math.round(2.55 * percent),
+        R = (num >> 16) + amt,
+        B = (num >> 8 & 0x00FF) + amt,
+        G = (num & 0x0000FF) + amt;
+    return "#" + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 + (B < 255 ? B < 1 ? 0 : B : 255) * 0x100 + (G < 255 ? G < 1 ? 0 : G : 255)).toString(16).slice(1);
 };
 
 // darken the color
@@ -185,9 +185,7 @@ darken.addEventListener('click', (e) => {
 
 // lighten the color
 lighten.addEventListener('click', (e) => {
-    if (!e.target.classList.contains('lighten')) {
-        e.target.classList.toggle('lighten')
-    }
+    e.target.classList.toggle('lighten')
     colors.classList.remove('colors');
     colorPicker.classList.remove('color-picker');
     base.classList.remove('base');
@@ -204,6 +202,11 @@ clear.addEventListener('click', (e) => {
     //         div.style.backgroundColor = 'rgb(20, 45, 76)'
     //     })
     // } else {
+    colors.classList.remove('colors');
+    colorPicker.classList.remove('color-picker');
+    base.classList.remove('base');
+    darken.classList.remove('darken')
+    lighten.classList.remove('lighten')
     divs.forEach(div => {
         div.style.backgroundColor = `${background.value}`
     })
@@ -258,15 +261,27 @@ colorPicker.addEventListener('click', (e) => {
 })
 
 // background color
+let hexNumber;
+let rgbNumber;
+background.addEventListener('click', (e) => {
+    hexNumber = e.target.value;
+    rgbNumber = hexToRgb(hexNumber)
+    rgbNumber = `rgb(${rgbNumber.r}, ${rgbNumber.g}, ${rgbNumber.b})`
+    console.log(rgbNumber);
+})
 background.addEventListener('change', (e) => {
-    // console.log(e)
+    // console.log(e.target)
     if (!e.target.classList.contains('background')) {
         e.target.classList.toggle('background')
     }
     // console.log(background)
     divs = document.querySelectorAll('.boxes')
     divs.forEach(div => {
-        div.style.backgroundColor = `${background.value}`
+        // console.log(div.style.backgroundColor)
+        if (div.style.backgroundColor == rgbNumber) {
+            // console.log(e.target.value)
+            div.style.backgroundColor = `${e.target.value}`
+        }
     })
 })
 
@@ -291,8 +306,7 @@ button.addEventListener('change', (e) => {
 
     container.style.gridTemplateColumns = `repeat(${number}, 1fr)`
 
-    // console.log(width)
-    // console.log(number)
+
     for (let i = 0; i < (number * number); i++) {
         div = document.createElement('div');
         div.style.backgroundColor = `${background.value}`
