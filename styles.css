@@ -138,7 +138,7 @@ input[type="color"]::-webkit-color-swatch {
     caret-color: transparent;
 }
 .content--grid > div {
-    transition: all 0.25s ease;
+    transition: all 0.1s ease;
 }
 .button {
     display: inline-block;
